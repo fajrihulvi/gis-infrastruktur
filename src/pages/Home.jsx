@@ -1,7 +1,10 @@
+import Maps from "../components/Maps";
 const Home = () => {
-  return (<div>
-    Homeeee
-  </div>)
-}
+  return (
+    <div>
+      <Maps />
+    </div>
+  );
+};
 
 export default Home;
