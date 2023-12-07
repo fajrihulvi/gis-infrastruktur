@@ -10,7 +10,7 @@ const MyComponent = () => {
 
   useEffect(() => {
     if (!map) return;
-    map.data.addGeoJson(PkgKelurahan)
+    console.log('geojson', map.data.addGeoJson(PkgKelurahan))
   }, [map]);
   // Do something with the Google Maps map instance
 
