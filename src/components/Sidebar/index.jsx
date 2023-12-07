@@ -14,6 +14,7 @@ import {
   Center,
   Text,
   Icon,
+  Slide,
 } from "@chakra-ui/react";
 
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
@@ -30,7 +31,7 @@ const SidebarContent = () => (
 );
 
 const SideDrawer = () => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
@@ -40,10 +41,12 @@ const SideDrawer = () => {
         backgroundColor={"white"}
         borderRadius={"8px"}
         margin={5}
-        marginLeft={"360px"}
+        marginLeft={isSidebarOpen? "360px" : ''}
+        transition='ease-in'
+        transitionDuration={'0.2s'}
         zIndex={1410}
       >
-        <InputGroup size={"lg"} borderRadius={"8px"} w={'360px'}>
+        <InputGroup size={"lg"} borderRadius={"8px"} w={"360px"}>
           <InputLeftElement
             cursor={"pointer"}
             fontSize="1.3em"
@@ -57,29 +60,35 @@ const SideDrawer = () => {
           </InputRightElement>
         </InputGroup>
       </Flex>
-      <Box
-        position={"fixed"}
-        top={0}
-        h={"100vh"}
-        width={"320px"}
-        backgroundColor={"white"}
-        padding={"1.5rem"}
+      <Slide
+        direction="left"
+        in={isSidebarOpen}
+        style={{ zIndex: "9", width: '320px' }}
       >
-        <Center mb="3rem">
-          <Image align={"center"} src={Logo} />
-        </Center>
-        <SidebarContent />
-        <Box position="absolute" bottom="1.5rem" left={0} w="100%" p="3rem">
-          <Button
-            rightIcon={<Icon as={MdOutlineLogin} />}
-            colorScheme="dark"
-            variant="outline"
-            w="100%"
-          >
-            Login as admin
-          </Button>
+        <Box
+          position={"fixed"}
+          top={0}
+          h={"100vh"}
+          width={"320px"}
+          backgroundColor={"white"}
+          padding={"1.5rem"}
+        >
+          <Center mb="3rem">
+            <Image align={"center"} src={Logo} />
+          </Center>
+          <SidebarContent />
+          <Box position="absolute" bottom="1.5rem" left={0} w="100%" p="3rem">
+            <Button
+              rightIcon={<Icon as={MdOutlineLogin} />}
+              colorScheme="dark"
+              variant="outline"
+              w="100%"
+            >
+              Login as admin
+            </Button>
+          </Box>
         </Box>
-      </Box>
+      </Slide>
     </Box>
   );
 };
