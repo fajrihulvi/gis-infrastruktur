@@ -2,7 +2,7 @@ import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
 import { useEffect } from "react";
 
 const API_KEY = "AIzaSyALOdn_pNdH0rafCH2XESCX6JRj6rz2YPA";
-import PkgKelurahan from '../../assets/pkg_transportation.json';
+import PkgKelurahan from '../../assets/pkg_kelurahan_dummy.json';
 import { Box } from "@chakra-ui/react";
 
 const MyComponent = () => {
@@ -11,6 +11,11 @@ const MyComponent = () => {
   useEffect(() => {
     if (!map) return;
     map.data.addGeoJson(PkgKelurahan)
+    map.data.setStyle({
+      fillColor: 'green',
+      opacity:0.2,
+      strokeWeight: 1
+    })
   }, [map]);
   // Do something with the Google Maps map instance
 

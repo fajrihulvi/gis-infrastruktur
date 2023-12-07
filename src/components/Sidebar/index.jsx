@@ -15,18 +15,65 @@ import {
   Text,
   Icon,
   Slide,
+  Select,
 } from "@chakra-ui/react";
 
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
-import { MdOutlineLogin } from "react-icons/md";
+import { MdOutlineLogin , MdSend} from "react-icons/md";
 
 import Logo from "../../assets/logo.svg";
 
+const sideBarItem = [
+  {
+    label: 'Data Infrastruktur',
+    child: [
+      {
+        label: 'Administrasi'
+      },
+      {
+        label: 'Drainase'
+      }
+    ]
+  },{
+    label: 'Infrastruktur Existing',
+    child: [
+      {
+        label: 'Jalan'
+      },
+      {
+        label: 'List Item'
+      }
+    ]
+  },{
+    label: 'Indikator Makro',
+    child: [
+      {
+        label: 'Kemiskinan'
+      },
+      {
+        label: 'Pengangguran'
+      },
+      {
+        label: 'PDRB'
+      },
+      {
+        label: 'Stunting'
+      }
+    ]
+  }
+]
+
 const SidebarContent = () => (
   <VStack alignItems="flex-start">
-    <Text>Data Infrastruktur</Text>
-    <Text>Infrastruktur Existing</Text>
-    <Text>Indikator Makro</Text>
+    {
+      sideBarItem.map((item, index) => {
+        return (
+          <div key={`menu-items-${index}`}>
+            <Text>{item.label}</Text>
+          </div>
+        )
+      })
+    }
   </VStack>
 );
 
@@ -38,15 +85,18 @@ const SideDrawer = () => {
   return (
     <Box position={"absolute"} zIndex={9}>
       <Flex
-        backgroundColor={"white"}
+        backgroundColor={"transparent"}
         borderRadius={"8px"}
         margin={5}
         marginLeft={isSidebarOpen? "360px" : ''}
         transition='ease-in'
         transitionDuration={'0.2s'}
         zIndex={1410}
+        gap={4}
       >
-        <InputGroup size={"lg"} borderRadius={"8px"} w={"360px"}>
+        <InputGroup size={"lg"} borderRadius={"8px"} w={"360px"}
+        backgroundColor={"white"}
+        >
           <InputLeftElement
             cursor={"pointer"}
             fontSize="1.3em"
@@ -58,6 +108,36 @@ const SideDrawer = () => {
           <InputRightElement>
             <SearchIcon color="gray.300" />
           </InputRightElement>
+        </InputGroup>
+        <InputGroup size={"lg"} borderRadius={"8px"} w={"200px"}
+        backgroundColor={"white"}
+        >
+          <Select placeholder='Pilih Kecamatan'>
+              <option value='option1'>Kecamatan Gerunggang</option>
+              <option value='option2'>Kecamatan Pangkalbalam</option>
+              <option value='option3'>Kecamatan Rangkui</option>
+            </Select>
+        </InputGroup>
+        <InputGroup size={"lg"} borderRadius={"8px"} w={"200px"}
+        backgroundColor={"white"}
+        >
+          <Select placeholder='Pilih Kelurahan'>
+              <option value='option1'>Option 1</option>
+              <option value='option2'>Option 2</option>
+              <option value='option3'>Option 3</option>
+            </Select>
+        </InputGroup>
+        <InputGroup size={"lg"} borderRadius={"8px"} w={"200px"}
+        backgroundColor={"white"}
+        >
+          <Button
+            rightIcon={<Icon as={MdSend} />}
+            backgroundColor={`#0093DD`}
+            textColor={`white`}
+            w="100%"
+          >
+            Beri Usulan
+          </Button>
         </InputGroup>
       </Flex>
       <Slide
