@@ -73,7 +73,7 @@ const SidebarContent = () => (
         <option value="option3">Option 3</option>
       </Select>
     </InputGroup>
-    {sideBarItem.map((item, index) => {
+    {/* {sideBarItem.map((item, index) => {
       return (
         <Box color={"#666666"} mb={2} key={`menu-items-${index}`}>
           <Text>{item.label}</Text>
@@ -84,7 +84,7 @@ const SidebarContent = () => (
           ))}
         </Box>
       );
-    })}
+    })} */}
   </VStack>
 );
 
