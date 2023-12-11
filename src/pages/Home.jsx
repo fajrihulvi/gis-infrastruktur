@@ -7,6 +7,7 @@ const Home = () => {
   const [selectedCollection , setSelectedCollection] = useState(null);
   const [listRegion , setlistRegion] = useState(null);
   const [filterRegion , setFilterRegion] = useState(null);
+  const [useRoadOnMap , setUseRoadOnMap] = useState(false);
   const [filteredGeoJson , setFilteredGeoJson] = useState(null);
   
   function groupingRegionName(array) {
@@ -47,10 +48,13 @@ const Home = () => {
     }
   },[filterRegion])
 
+  useEffect(() => {
+  },[useRoadOnMap])
+
   return (
     <div>
-      <Sidebar listRegion={listRegion} setFilterRegion={setFilterRegion}/>
-      <Maps dataMap={selectedCollection} filteredGeoJson={filteredGeoJson}/>
+      <Sidebar listRegion={listRegion} setFilterRegion={setFilterRegion} useRoadOnMap={useRoadOnMap} setUseRoadOnMap={setUseRoadOnMap}/>
+      <Maps dataMap={selectedCollection} useRoad={useRoadOnMap} filteredGeoJson={filteredGeoJson}/>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import {
   Icon,
   Slide,
   Select,
+  Switch,
 } from "@chakra-ui/react";
 
 import { MdOutlineLogin, MdSend } from "react-icons/md";
@@ -21,7 +22,7 @@ import { MdOutlineLogin, MdSend } from "react-icons/md";
 import Logo from "../../assets/logo.svg";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
-const SidebarContent = ({listRegion, setFilterRegion}) => {
+const SidebarContent = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOnMap}) => {
   const [selectedKecamatan , setSelectedKecamatan] = useState(null);
   const [selectedKelurahan , setSelectedKelurahan] = useState(null);
   
@@ -59,11 +60,15 @@ const SidebarContent = ({listRegion, setFilterRegion}) => {
           }) : ''}
         </Select>
       </InputGroup>
+      <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
+        <Text color={"#666666"}>Jalan Utama</Text>
+        <Switch id='roads' value={useRoadOnMap} onChange={() => {setUseRoadOnMap(!useRoadOnMap)}}/>
+      </InputGroup>
     </VStack>
   );
 };
 
-const SideDrawer = ({listRegion, setFilterRegion}) => {
+const SideDrawer = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOnMap}) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
@@ -124,7 +129,7 @@ const SideDrawer = ({listRegion, setFilterRegion}) => {
             <Center mb="3rem">
               <Image align={"center"} src={Logo} />
             </Center>
-            <SidebarContent listRegion={listRegion} setFilterRegion={setFilterRegion}/>
+            <SidebarContent listRegion={listRegion} setFilterRegion={setFilterRegion} useRoadOnMap={useRoadOnMap} setUseRoadOnMap={setUseRoadOnMap}/>
             <Box position="absolute" bottom="1.5rem" left={0} w="100%" p="3rem">
               <Button
                 rightIcon={<Icon as={MdOutlineLogin} />}

@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 const API_KEY = "AIzaSyALOdn_pNdH0rafCH2XESCX6JRj6rz2YPA";
 import { Box } from "@chakra-ui/react";
+import PangkalPinangRoads from "../../assets/pkg_transportasi_dummy.json"
 
-
-const MyComponent = ({geoJsonData, filterGeoJson}) => {
+const MyComponent = ({geoJsonData, useRoads, filterGeoJson}) => {
   const map = useMap('one-of-my-maps');
   useEffect(() => {
     if (!map) return;
@@ -18,7 +18,7 @@ const MyComponent = ({geoJsonData, filterGeoJson}) => {
       map.data.addGeoJson(
         {
           type: "FeatureCollection",
-          features: filterGeoJson,
+          features: useRoads ? [...filterGeoJson, ...PangkalPinangRoads.features] : filterGeoJson,
         }
       )
       map.data.setStyle({
@@ -31,13 +31,14 @@ const MyComponent = ({geoJsonData, filterGeoJson}) => {
         map.data.remove(feature);
       });
       map.data.addGeoJson(geoJsonData)
+      useRoads ? map.data.addGeoJson(PangkalPinangRoads) : null;
       map.data.setStyle({
         fillColor: 'orange',
         opacity:0.1,
         strokeWeight: 1
       })
     }
-  }, [filterGeoJson]);
+  }, [filterGeoJson, useRoads]);
 
   useEffect(() => {
     if (!map) return;
@@ -47,7 +48,11 @@ const MyComponent = ({geoJsonData, filterGeoJson}) => {
       opacity:0.1,
       strokeWeight: 1
     })
+    map.data.addListener("click", (event) => {
+      console.log(event.feature.h);
+    });
   }, [map]);
+  
   // Do something with the Google Maps map instance
 
   return <Box>
@@ -55,8 +60,9 @@ const MyComponent = ({geoJsonData, filterGeoJson}) => {
   </Box>;
 };
 
-const MapsComponent = ({dataMap, filteredGeoJson}) => {
+const MapsComponent = ({dataMap, useRoad, filteredGeoJson}) => {
   const [geoJson, setGeoJson] = useState(null);
+  const [useRoads, setUseRoads] = useState(false);
   const [filterGeoJson, setFilterGeoJson] = useState(null);
   const position = {lat: -2.13212, lng: 106.11366};
 
@@ -67,6 +73,10 @@ const MapsComponent = ({dataMap, filteredGeoJson}) => {
   useEffect(() => {
     setFilterGeoJson(filteredGeoJson);
   },[filteredGeoJson])
+
+  useEffect(() => {
+    setUseRoads(useRoad);
+  },[useRoad])
 
   return (
     <APIProvider apiKey={API_KEY}>
@@ -79,7 +89,7 @@ const MapsComponent = ({dataMap, filteredGeoJson}) => {
           center={position}
         />
         {
-          dataMap ? <MyComponent geoJsonData={geoJson} filterGeoJson={filterGeoJson}/> : null
+          dataMap ? <MyComponent geoJsonData={geoJson} useRoads={useRoads} filterGeoJson={filterGeoJson}/> : null
         }        
       </div>
     </APIProvider>
