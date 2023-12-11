@@ -5,26 +5,47 @@ import { useEffect, useState } from "react";
 const API_KEY = "AIzaSyALOdn_pNdH0rafCH2XESCX6JRj6rz2YPA";
 import { Box } from "@chakra-ui/react";
 
+
 const MyComponent = ({geoJsonData, filterGeoJson}) => {
   const map = useMap('one-of-my-maps');
-
   useEffect(() => {
+    console.log(geoJsonData);
     if (!map) return;
-    geoJsonData.features = filterGeoJson;
-    map.data.addGeoJson(geoJsonData)
-    map.data.setStyle({
-      fillColor: 'yellow',
-      opacity:0.2,
-      strokeWeight: 1
-    })
+    if (filterGeoJson) 
+    {
+      map.data.forEach(function(feature) {
+        map.data.remove(feature);
+      });
+      map.data.addGeoJson(
+        {
+          type: "FeatureCollection",
+          features: filterGeoJson,
+        }
+      )
+      map.data.setStyle({
+        fillColor: 'yellow',
+        opacity:0.1,
+        strokeWeight: 1
+      })
+    } else {
+      map.data.addGeoJson(geoJsonData)
+      map.data.setStyle({
+        fillColor: 'red',
+        opacity:0.1,
+        strokeWeight: 1
+      })
+    }
   }, [filterGeoJson]);
 
   useEffect(() => {
     if (!map) return;
+    map.data.forEach(function(feature) {
+      map.data.remove(feature);
+    });
     map.data.addGeoJson(geoJsonData)
     map.data.setStyle({
       fillColor: 'red',
-      opacity:0.2,
+      opacity:0.1,
       strokeWeight: 1
     })
   }, [map]);

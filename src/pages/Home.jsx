@@ -34,7 +34,10 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if (!filterRegion) return
+    if (!filterRegion) {
+      setFilteredGeoJson(null)
+      return
+    }
     if (filterRegion.kelurahan) {
       setFilteredGeoJson(filterGeoJsonByName(selectedCollection, filterRegion.kelurahan, 'KELURAHAN'));
     } else if (filterRegion.kecamatan) {
