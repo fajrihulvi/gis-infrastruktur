@@ -9,7 +9,6 @@ import { Box } from "@chakra-ui/react";
 const MyComponent = ({geoJsonData, filterGeoJson}) => {
   const map = useMap('one-of-my-maps');
   useEffect(() => {
-    console.log(geoJsonData);
     if (!map) return;
     if (filterGeoJson) 
     {
@@ -23,14 +22,17 @@ const MyComponent = ({geoJsonData, filterGeoJson}) => {
         }
       )
       map.data.setStyle({
-        fillColor: 'yellow',
+        fillColor: filterGeoJson.length > 1 ? 'red' :'yellow',
         opacity:0.1,
         strokeWeight: 1
       })
     } else {
+      map.data.forEach(function(feature) {
+        map.data.remove(feature);
+      });
       map.data.addGeoJson(geoJsonData)
       map.data.setStyle({
-        fillColor: 'red',
+        fillColor: 'orange',
         opacity:0.1,
         strokeWeight: 1
       })
@@ -39,12 +41,9 @@ const MyComponent = ({geoJsonData, filterGeoJson}) => {
 
   useEffect(() => {
     if (!map) return;
-    map.data.forEach(function(feature) {
-      map.data.remove(feature);
-    });
     map.data.addGeoJson(geoJsonData)
     map.data.setStyle({
-      fillColor: 'red',
+      fillColor: 'orange',
       opacity:0.1,
       strokeWeight: 1
     })
