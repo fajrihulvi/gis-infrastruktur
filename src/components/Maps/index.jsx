@@ -1,18 +1,29 @@
+/* eslint-disable react/prop-types */
 import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const API_KEY = "AIzaSyALOdn_pNdH0rafCH2XESCX6JRj6rz2YPA";
-import PkgKelurahan from '../../assets/pkg_kelurahan_dummy.json';
 import { Box } from "@chakra-ui/react";
 
-const MyComponent = () => {
+const MyComponent = ({geoJsonData, filterGeoJson}) => {
   const map = useMap('one-of-my-maps');
 
   useEffect(() => {
     if (!map) return;
-    map.data.addGeoJson(PkgKelurahan)
+    geoJsonData.features = filterGeoJson;
+    map.data.addGeoJson(geoJsonData)
     map.data.setStyle({
-      fillColor: 'green',
+      fillColor: 'yellow',
+      opacity:0.2,
+      strokeWeight: 1
+    })
+  }, [filterGeoJson]);
+
+  useEffect(() => {
+    if (!map) return;
+    map.data.addGeoJson(geoJsonData)
+    map.data.setStyle({
+      fillColor: 'red',
       opacity:0.2,
       strokeWeight: 1
     })
@@ -24,8 +35,18 @@ const MyComponent = () => {
   </Box>;
 };
 
-const MapsComponent = () => {
+const MapsComponent = ({dataMap, filteredGeoJson}) => {
+  const [geoJson, setGeoJson] = useState(null);
+  const [filterGeoJson, setFilterGeoJson] = useState(null);
   const position = {lat: -2.13212, lng: 106.11366};
+
+  useEffect(() => {
+      setGeoJson(dataMap);
+  },[dataMap])
+
+  useEffect(() => {
+    setFilterGeoJson(filteredGeoJson);
+  },[filteredGeoJson])
 
   return (
     <APIProvider apiKey={API_KEY}>
@@ -37,7 +58,9 @@ const MapsComponent = () => {
           zoom={15}
           center={position}
         />
-        <MyComponent />
+        {
+          dataMap ? <MyComponent geoJsonData={geoJson} filterGeoJson={filterGeoJson}/> : null
+        }        
       </div>
     </APIProvider>
   );

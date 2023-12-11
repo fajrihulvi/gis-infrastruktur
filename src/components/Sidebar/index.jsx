@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Button,
@@ -20,113 +21,55 @@ import { MdOutlineLogin, MdSend } from "react-icons/md";
 import Logo from "../../assets/logo.svg";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
-const sideBarItem = [
-  {
-    label: "Infrastruktur Existing",
-    child: [
-      {
-        label: "Jalan",
-      },
-      {
-        label: "List Item",
-      },
-    ],
-  },
-  {
-    label: "Indikator Makro",
-    child: [
-      {
-        label: "Kemiskinan",
-      },
-      {
-        label: "Pengangguran",
-      },
-      {
-        label: "PDRB",
-      },
-      {
-        label: "Stunting",
-      },
-    ],
-  },
-];
+const SidebarContent = ({listRegion, setFilterRegion}) => {
+  const [selectedKecamatan , setSelectedKecamatan] = useState(null);
+  const [selectedKelurahan , setSelectedKelurahan] = useState(null);
+  
+  useEffect(() => {
+    selectedKecamatan ? setFilterRegion({kecamatan: selectedKecamatan}) : setFilterRegion(null)
+  },[selectedKecamatan])
 
-const SidebarContent = () => (
-  <VStack alignItems="flex-start">
-    <Text color={"#666666"}>Regional </Text>
-    <InputGroup
-      size={"lg"}
-      borderRadius={"8px"}
-      backgroundColor={"white"}
-      mb={2}
-    >
-      <Select placeholder="Pilih Kecamatan" cursor={"pointer"}>
-        <option value="option1">Kecamatan Gerunggang</option>
-        <option value="option2">Kecamatan Pangkalbalam</option>
-        <option value="option3">Kecamatan Rangkui</option>
-      </Select>
-    </InputGroup>
-    <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
-      <Select placeholder="Pilih Kelurahan" cursor={"pointer"}>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </Select>
-    </InputGroup>
-    {/* {sideBarItem.map((item, index) => {
-      return (
-        <Box color={"#666666"} mb={2} key={`menu-items-${index}`}>
-          <Text>{item.label}</Text>
-          {item.child.map((subItem, subIdx) => (
-            <Flex ml={3} key={subIdx}>
-              <Text>{subItem.label}</Text>
-            </Flex>
-          ))}
-        </Box>
-      );
-    })} */}
-  </VStack>
-);
+  useEffect(() => {
+    selectedKelurahan ? setFilterRegion({kecamatan: selectedKecamatan, kelurahan: selectedKelurahan}) : selectedKecamatan ? setFilterRegion({kecamatan: selectedKecamatan}) : setFilterRegion(null)
+  },[selectedKelurahan])
 
-const SideDrawer = () => {
+  return (
+    <VStack alignItems="flex-start">
+      <Text color={"#666666"}>Regional </Text>
+      <InputGroup
+        size={"lg"}
+        borderRadius={"8px"}
+        backgroundColor={"white"}
+        mb={2}
+      >
+        <Select placeholder="Pilih Kecamatan" cursor={"pointer"} onChange={(e) => {setSelectedKecamatan(e.target.value)}}>
+          {listRegion ? Object.keys(listRegion).map((data, index) => (
+            <option key={index} value={data}>{data}</option>
+          )) : ''}
+        </Select>
+      </InputGroup>
+      <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
+        <Select disabled={!selectedKecamatan} placeholder="Pilih Kelurahan" cursor={"pointer"} onChange={(e) => {setSelectedKelurahan(e.target.value)}}>
+          {listRegion ? Object.keys(listRegion).map((data, index) => {
+            if(data == selectedKecamatan) {
+              {return listRegion[data].map((item, indexItem) => (
+                <option key={indexItem} value={item}>{item}</option>
+              ))}
+            }
+          }) : ''}
+        </Select>
+      </InputGroup>
+    </VStack>
+  );
+};
+
+const SideDrawer = ({listRegion, setFilterRegion}) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   return (
     <>
-      {/* <Flex
-        backgroundColor={"transparent"}
-        borderRadius={"8px"}
-        margin={5}
-        marginLeft={isSidebarOpen ? "360px" : ""}
-        transition="ease-in"
-        transitionDuration={"0.2s"}
-        zIndex={1410}
-        gap={4}
-        alignItems={"flex-end"}
-        width={"100%"}
-      >
-        <InputGroup
-          size={"lg"}
-          borderRadius={"8px"}
-          w={"360px"}
-          backgroundColor={"white"}
-        >
-          <InputLeftElement
-            cursor={"pointer"}
-            fontSize="1.3em"
-            onClick={toggleSidebar}
-          >
-            <HamburgerIcon />
-          </InputLeftElement>
-          <Input placeholder="Telusuri Infrastruktur" fontSize="1em" />
-          <InputRightElement>
-            <SearchIcon color="gray.300" />
-          </InputRightElement>
-        </InputGroup>
-      </Flex> */}
-
       <InputGroup
         size={"lg"}
         borderRadius={"8px"}
@@ -181,7 +124,7 @@ const SideDrawer = () => {
             <Center mb="3rem">
               <Image align={"center"} src={Logo} />
             </Center>
-            <SidebarContent />
+            <SidebarContent listRegion={listRegion} setFilterRegion={setFilterRegion}/>
             <Box position="absolute" bottom="1.5rem" left={0} w="100%" p="3rem">
               <Button
                 rightIcon={<Icon as={MdOutlineLogin} />}
