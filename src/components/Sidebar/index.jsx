@@ -81,11 +81,18 @@ const SidebarContent = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOn
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
-              <Text color={"#666666"}>Jalan Utama</Text>
-              <Spacer />
-              <Switch id='roads' value={useRoadOnMap} onChange={() => {setUseRoadOnMap(!useRoadOnMap)}}/>
-            </InputGroup>
+            <VStack alignItems="flex-start">
+              <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
+                <Text color={"#666666"}>Jalan Utama</Text>
+                <Spacer />
+                <Switch id='roads' value={useRoadOnMap} onChange={() => {setUseRoadOnMap(!useRoadOnMap)}}/>
+              </InputGroup>
+              <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
+                <Text color={"#666666"}>Jalan Lain</Text>
+                <Spacer />
+                <Switch id='roads' value={null} onChange={() => {}}/>
+              </InputGroup>
+            </VStack>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
