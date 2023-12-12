@@ -15,12 +15,18 @@ import {
   Slide,
   Select,
   Switch,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionIcon,
+  AccordionPanel,
+  Spacer,
 } from "@chakra-ui/react";
 
 import { MdOutlineLogin, MdSend } from "react-icons/md";
 
 import Logo from "../../assets/logo.svg";
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { AttachmentIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 const SidebarContent = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOnMap}) => {
   const [selectedKecamatan , setSelectedKecamatan] = useState(null);
@@ -60,10 +66,29 @@ const SidebarContent = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOn
           }) : ''}
         </Select>
       </InputGroup>
-      <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
-        <Text color={"#666666"}>Jalan Utama</Text>
-        <Switch id='roads' value={useRoadOnMap} onChange={() => {setUseRoadOnMap(!useRoadOnMap)}}/>
-      </InputGroup>
+      <Text paddingTop={4} color={"#666666"}>Infrastruktur Existing</Text>
+      <Accordion allowMultiple width={'100%'} >
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box as="span" flex='1' textAlign='left'>
+                <Flex alignItems={"center"}>
+                  <AttachmentIcon />
+                  <Text color={"#666666"} paddingLeft={4}>Jalan</Text>
+                </Flex>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
+              <Text color={"#666666"}>Jalan Utama</Text>
+              <Spacer />
+              <Switch id='roads' value={useRoadOnMap} onChange={() => {setUseRoadOnMap(!useRoadOnMap)}}/>
+            </InputGroup>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
     </VStack>
   );
 };
