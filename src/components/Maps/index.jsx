@@ -137,6 +137,7 @@ const MapsComponent = ({dataMap, useRoad, filteredGeoJson}) => {
                 <p>Fungsi Rev : {infoWindowData.data.FUNGSI_REV}</p>
                 <p>Status Rev : {infoWindowData.data.STATUS_REV}</p>
                 <p>Sumber : {infoWindowData.data.SUMBER}</p>
+                <p>Ket : {infoWindowData.data.KET}</p>
                 <br></br>
                 <p>Coordinate Location</p>
                 <p>latitude : {infoWindowData.lat}</p>
