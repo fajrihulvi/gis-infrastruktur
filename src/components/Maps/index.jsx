@@ -25,7 +25,7 @@ const MyComponent = ({geoJsonData, useRoads, filterGeoJson, setInfoWindowData}) 
         return {
           fillColor: filterGeoJson.length > 1 ? 'red' :'yellow',
           opacity:0.1,
-          strokeWeight: feature.h.FUNGSI_REV ? 2 : 1,
+          strokeWeight: useRoads ? feature.h.FUNGSI_REV ? 2 : 0 : 1,
           strokeColor: feature.h.FUNGSI_REV ? feature.h.FUNGSI_REV == 'Jalan Lokal' ? 'green': 'red' : 'black'
         }
       })
@@ -39,7 +39,7 @@ const MyComponent = ({geoJsonData, useRoads, filterGeoJson, setInfoWindowData}) 
         return {
           fillColor: 'orange',
           opacity:0.1,
-          strokeWeight: feature.h.FUNGSI_REV ? 2 : 1,
+          strokeWeight: useRoads ? feature.h.FUNGSI_REV ? 2 : 0 : 1,
           strokeColor: feature.h.FUNGSI_REV ? feature.h.FUNGSI_REV == 'Jalan Lokal' ? 'green': 'red' : 'black'
         }
       })
