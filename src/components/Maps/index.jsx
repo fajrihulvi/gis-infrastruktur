@@ -21,10 +21,13 @@ const MyComponent = ({geoJsonData, useRoads, filterGeoJson, setInfoWindowData}) 
           features: useRoads ? [...filterGeoJson, ...PangkalPinangRoads.features] : filterGeoJson,
         }
       )
-      map.data.setStyle({
-        fillColor: filterGeoJson.length > 1 ? 'red' :'yellow',
-        opacity:0.1,
-        strokeWeight: 1
+      map.data.setStyle(function(feature) {
+        return {
+          fillColor: filterGeoJson.length > 1 ? 'red' :'yellow',
+          opacity:0.1,
+          strokeWeight: feature.h.FUNGSI_REV ? 2 : 1,
+          strokeColor: feature.h.FUNGSI_REV ? 'red' : 'black'
+        }
       })
     } else {
       map.data.forEach(function(feature) {
@@ -32,10 +35,13 @@ const MyComponent = ({geoJsonData, useRoads, filterGeoJson, setInfoWindowData}) 
       });
       map.data.addGeoJson(geoJsonData)
       useRoads ? map.data.addGeoJson(PangkalPinangRoads) : null;
-      map.data.setStyle({
-        fillColor: 'orange',
-        opacity:0.1,
-        strokeWeight: 1
+      map.data.setStyle(function(feature) {
+        return {
+          fillColor: 'orange',
+          opacity:0.1,
+          strokeWeight: feature.h.FUNGSI_REV ? 2 : 1,
+          strokeColor: feature.h.FUNGSI_REV ? 'red' : 'black'
+        }
       })
     }
   }, [filterGeoJson, useRoads]);
@@ -80,6 +86,7 @@ const MapsComponent = ({dataMap, useRoad, filteredGeoJson}) => {
   },[dataMap])
 
   useEffect(() => {
+    setInfoWindowData(null);
     setFilterGeoJson(filteredGeoJson);
   },[filteredGeoJson])
 
