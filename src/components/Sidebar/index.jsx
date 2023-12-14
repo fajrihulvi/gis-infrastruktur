@@ -162,7 +162,7 @@ const SideDrawer = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOnMap}
               <Image align={"center"} src={Logo} />
             </Center>
             <SidebarContent listRegion={listRegion} setFilterRegion={setFilterRegion} useRoadOnMap={useRoadOnMap} setUseRoadOnMap={setUseRoadOnMap}/>
-            <Box position="absolute" bottom="1.5rem" left={0} w="100%" p="3rem">
+            {/* <Box position="absolute" bottom="1.5rem" left={0} w="100%" p="3rem">
               <Button
                 rightIcon={<Icon as={MdOutlineLogin} />}
                 colorScheme="dark"
@@ -171,7 +171,7 @@ const SideDrawer = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOnMap}
               >
                 Login as admin
               </Button>
-            </Box>
+            </Box> */}
           </Box>
         </Slide>
       </Box>
