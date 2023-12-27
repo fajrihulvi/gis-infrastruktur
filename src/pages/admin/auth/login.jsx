@@ -53,7 +53,7 @@ const AuthLogin = () => {
                   </Flex>
               </Box>
               <Box>
-                <Button w={`100%`} p={2} colorScheme='blue'>Masuk</Button>
+                <Button w={`100%`} p={2} colorScheme='blue' onClick={() => {}}>Masuk</Button>
               </Box>
             </Flex>
           </Box>
