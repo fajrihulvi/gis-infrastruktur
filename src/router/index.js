@@ -1,7 +1,9 @@
 import Home from '../pages/Home';
-import AuthLogin from '../pages/Admin/Auth/Login';
 import AdminUserManagement from '../pages/Admin/UserManagement';
-import AdminDashboard from '../pages/admin/dashboard';
+import AdminDashboard from '../pages/Admin/Dashboard';
+import AdminFormAddUserManagement from '../pages/Admin/UserManagement/Form/add';
+import AuthLogin from '../pages/Admin/Auth/Login';
+import AdminFormEditUserManagement from '../pages/Admin/UserManagement/Form/edit';
 
 
 export const routes = [
@@ -24,5 +26,15 @@ export const routes = [
     name: 'Admin User Management',
     url: '/admin/user-management',
     component: AdminUserManagement
+  },
+  {
+    name: 'Admin Form Add User Management',
+    url: '/admin/user-management/add',
+    component: AdminFormAddUserManagement
+  },
+  {
+    name: 'Admin Form Edit User Management',
+    url: '/admin/user-management/edit',
+    component: AdminFormEditUserManagement
   }
 ]
