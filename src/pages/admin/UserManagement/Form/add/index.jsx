@@ -1,7 +1,10 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, Input, Select, Text,} from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, Input, InputGroup, InputRightElement, Select, Text,} from "@chakra-ui/react";
 import SideDrawer from "../../../../../components/Sidebar/AdminSideBar";
+import { useState } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const AdminFormAddUserManagement = () => {
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <Flex alignItems="flex-start" w={`100vw`} >
@@ -55,6 +58,21 @@ const AdminFormAddUserManagement = () => {
                                 />
                             </GridItem>
                             <GridItem>
+                                <Text mb='8px'>Password</Text>
+                                <InputGroup size='md'>
+                                  <Input
+                                    pr='4.5rem'
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder='Enter password'
+                                  />
+                                  <InputRightElement width='4.5rem'>
+                                    <Button h='1.75rem' size='sm' bg={`transparent`} onClick={() => {setShowPassword(!showPassword)}}>
+                                      {showPassword ? <ViewOffIcon/> : <ViewIcon/>}
+                                    </Button>
+                                  </InputRightElement>
+                                </InputGroup>
+                            </GridItem>
+                            <GridItem>
                                 <Text mb='8px'>Dinas</Text>
                                 <Select placeholder='Pilih Dinas' size={`sm`}>
                                     <option value='option1'>Dinas 1</option>
@@ -62,7 +80,7 @@ const AdminFormAddUserManagement = () => {
                                     <option value='option3'>Dinas 3</option>
                                 </Select>
                             </GridItem>
-                            <GridItem colSpan={2}>
+                            <GridItem>
                                 <Text mb='8px'>Nomor Induk Pegawai</Text>
                                 <Input
                                     placeholder='Isi nomor induk pegawai'
