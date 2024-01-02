@@ -4,6 +4,9 @@ import AdminDashboard from '../pages/Admin/Dashboard';
 import AdminFormAddUserManagement from '../pages/Admin/UserManagement/Form/add';
 import AuthLogin from '../pages/Admin/Auth/Login';
 import AdminFormEditUserManagement from '../pages/Admin/UserManagement/Form/edit';
+import AdminInfrastructureCategory from '../pages/Admin/InfrastructureCategory';
+import AdminFormAddInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/add';
+import AdminFormEditInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/edit';
 
 
 export const routes = [
@@ -36,5 +39,20 @@ export const routes = [
     name: 'Admin Form Edit User Management',
     url: '/admin/user-management/edit',
     component: AdminFormEditUserManagement
-  }
+  },
+  {
+    name: 'Admin Inrastructure Category',
+    url: '/admin/infrastructure-category',
+    component: AdminInfrastructureCategory
+  },
+  {
+    name: 'Admin Inrastructure Category',
+    url: '/admin/infrastructure-category/add',
+    component: AdminFormAddInfrastructureCategory
+  },
+  {
+    name: 'Admin Inrastructure Category',
+    url: '/admin/infrastructure-category/edit',
+    component: AdminFormEditInfrastructureCategory
+  },
 ]
