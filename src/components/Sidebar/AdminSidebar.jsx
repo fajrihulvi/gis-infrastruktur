@@ -1,29 +1,30 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 import {
-  Button,
   VStack,
   Box,
   Image,
   Flex,
-  InputGroup,
   Center,
   Text,
-  Icon,
-  Slide,
-  Select,
-  Switch,
-  Spacer,
 } from "@chakra-ui/react";
 
 import { MdSend } from "react-icons/md";
 
 import Logo from "../../assets/logo.svg";
+import BuildingSvg from "../../assets/buildings.svg";
+
+import DocumentTextSvg from "../../assets/document-text.svg";
+import HomeSvg from "../../assets/home-2.svg";
+import ProfileSvg from "../../assets/profile-2user.svg";
+
 import { ChevronLeftIcon, ChevronRightIcon, HamburgerIcon } from "@chakra-ui/icons";
 
 const SidebarContent = () => {
+  const navigate = useNavigate();
   const [selectedKecamatan , setSelectedKecamatan] = useState(null);
   const [selectedKelurahan , setSelectedKelurahan] = useState(null);
   
@@ -56,9 +57,12 @@ const SidebarContent = () => {
           boxShadow:
             '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
         }}
+        onClick={() => {
+          navigate('/admin/dashboard');
+        }}
       >
         <Flex alignItems={`center`} gap={4}>
-          <HamburgerIcon/>
+          <Image align={"center"} src={HomeSvg} color='#4b4f56'/>
           <Text>
             Dashboard
           </Text>
@@ -91,9 +95,12 @@ const SidebarContent = () => {
           boxShadow:
             '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
         }}
+        onClick={() => {
+          navigate('/admin/user-management');
+        }}
       >
         <Flex alignItems={`center`} gap={4}>
-          <HamburgerIcon/>
+          <Image align={"center"} src={DocumentTextSvg} color='#4b4f56'/>
           <Text>
             User Management
           </Text>
@@ -126,9 +133,12 @@ const SidebarContent = () => {
           boxShadow:
             '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
         }}
+        onClick={() => {
+          navigate('/admin/infrastructure-category');
+        }}
       >
         <Flex alignItems={`center`} gap={4}>
-          <HamburgerIcon/>
+          <Image align={"center"} src={BuildingSvg} color='#4b4f56'/>
           <Text>
             Kategori Infrastruktur
           </Text>
@@ -161,9 +171,12 @@ const SidebarContent = () => {
           boxShadow:
             '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
         }}
+        onClick={() => {
+          navigate('/admin/activity-logs');
+        }}
       >
         <Flex alignItems={`center`} gap={4}>
-          <HamburgerIcon/>
+          <Image align={"center"} src={ProfileSvg} color='#4b4f56'/>
           <Text>
             Log Activity
           </Text>

@@ -1,9 +1,10 @@
 import { Box, Button, Flex, Image, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
 import adminLoginBanner from "../../../assets/admin-login-banner.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthLogin = () => {
-
+  const navigate = useNavigate();
   const [show, setShow] = useState(false)
 
   const handleClick = () => setShow(!show)
@@ -53,7 +54,9 @@ const AuthLogin = () => {
                   </Flex>
               </Box>
               <Box>
-                <Button w={`100%`} p={2} colorScheme='blue' onClick={() => {}}>Masuk</Button>
+                <Button w={`100%`} p={2} colorScheme='blue' onClick={() => {
+                  navigate('/admin/dashboard');
+                }}>Masuk</Button>
               </Box>
             </Flex>
           </Box>

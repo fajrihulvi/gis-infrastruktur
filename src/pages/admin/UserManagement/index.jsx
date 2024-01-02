@@ -4,6 +4,7 @@ import { MdAdd } from "react-icons/md";
 import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ChevronDownIcon, DeleteIcon, EditIcon, PhoneIcon } from "@chakra-ui/icons";
 import { createColumnHelper } from "@tanstack/react-table";
 import { DataTable } from "../../../components/Table";
+import { useNavigate } from "react-router-dom";
 
 
 const columnHelper = createColumnHelper();
@@ -40,6 +41,7 @@ const columns = [
 
 
 const AdminUserManagement = () => {
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const data = [
@@ -144,7 +146,9 @@ const AdminUserManagement = () => {
                     <Flex alignItems={`center`}>
                       <Text fontSize='2xl'>Daftar User Admin</Text>
                       <Spacer/>
-                      <Button color={`white`} leftIcon={<MdAdd />} backgroundColor={`#349DEF`} variant='solid'>
+                      <Button color={`white`} leftIcon={<MdAdd />} backgroundColor={`#349DEF`} variant='solid' onClick={() => {
+                          navigate('/admin/user-management/add');
+                        }}>
                         Tambah User Admin
                       </Button>
                     </Flex>
