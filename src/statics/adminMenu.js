@@ -33,7 +33,25 @@ const adminMenu = [
     url: '/admin/master-shp',
     label: 'Master Shape (SHP)',
     icon: React.createElement(HiOutlineFolderOpen, {size: '24px'}),
-    group: 'master'
+    group: 'master',
+    submenus: [
+      {
+        url: '/admin/master-shp?tab=regional',
+        label: 'Regional',
+      },
+      {
+        url: '/admin/master-shp?tab=existing',
+        label: 'Existing',
+      },
+      {
+        url: '/admin/master-shp?tab=planning',
+        label: 'Perencanaan',
+      },
+      {
+        url: '/admin/master-shp?tab=indicator-macro',
+        label: 'Indikator Makro',
+      },
+    ]
   },
 ]
 
