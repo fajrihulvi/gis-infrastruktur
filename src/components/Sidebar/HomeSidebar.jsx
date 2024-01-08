@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
@@ -15,18 +14,15 @@ import {
   Slide,
   Select,
   Switch,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
   Spacer,
 } from "@chakra-ui/react";
 
-import { MdOutlineLogin, MdSend } from "react-icons/md";
+import { MdSend } from "react-icons/md";
 
 import Logo from "../../assets/logo.svg";
-import { AttachmentIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+
+
 
 const SidebarContent = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOnMap}) => {
   const [selectedKecamatan , setSelectedKecamatan] = useState(null);
@@ -34,11 +30,11 @@ const SidebarContent = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOn
   
   useEffect(() => {
     selectedKecamatan ? setFilterRegion({kecamatan: selectedKecamatan}) : setFilterRegion(null)
-  },[selectedKecamatan])
+  },[selectedKecamatan, setFilterRegion])
 
   useEffect(() => {
     selectedKelurahan ? setFilterRegion({kecamatan: selectedKecamatan, kelurahan: selectedKelurahan}) : selectedKecamatan ? setFilterRegion({kecamatan: selectedKecamatan}) : setFilterRegion(null)
-  },[selectedKelurahan])
+  },[selectedKecamatan, selectedKelurahan, setFilterRegion])
 
   return (
     <VStack alignItems="flex-start">
@@ -57,7 +53,7 @@ const SidebarContent = ({listRegion, setFilterRegion, useRoadOnMap, setUseRoadOn
       </InputGroup>
       <InputGroup size={"lg"} borderRadius={"8px"} backgroundColor={"white"}>
         <Select disabled={!selectedKecamatan} placeholder="Pilih Kelurahan" cursor={"pointer"} onChange={(e) => {setSelectedKelurahan(e.target.value)}}>
-          {listRegion ? Object.keys(listRegion).map((data, index) => {
+          {listRegion ? Object.keys(listRegion).map((data) => {
             if(data == selectedKecamatan) {
               {return listRegion[data].map((item, indexItem) => (
                 <option key={indexItem} value={item}>{item}</option>

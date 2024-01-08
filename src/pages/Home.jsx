@@ -1,5 +1,5 @@
 import Maps from "../components/Maps";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar/HomeSidebar";
 import PangkalPinangCollection from "../assets/pkg_kelurahan_dummy.json";
 import { useEffect, useState } from "react";
 
