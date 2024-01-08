@@ -7,6 +7,7 @@ import AdminFormEditUserManagement from '../pages/Admin/UserManagement/Form/edit
 import AdminInfrastructureCategory from '../pages/Admin/InfrastructureCategory';
 import AdminFormAddInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/add';
 import AdminFormEditInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/edit';
+import AdminMasterSHP from '../pages/admin/MasterSHP/index';
 
 
 export const routes = [
@@ -23,36 +24,49 @@ export const routes = [
   {
     name: 'Admin Dashboard',
     url: '/admin/dashboard',
-    component: AdminDashboard
+    component: AdminDashboard,
+    isAdmin: true
   },
   {
     name: 'Admin User Management',
     url: '/admin/user-management',
-    component: AdminUserManagement
+    component: AdminUserManagement,
+    isAdmin: true
   },
   {
     name: 'Admin Form Add User Management',
     url: '/admin/user-management/add',
-    component: AdminFormAddUserManagement
+    component: AdminFormAddUserManagement,
+    isAdmin: true
   },
   {
     name: 'Admin Form Edit User Management',
     url: '/admin/user-management/edit',
-    component: AdminFormEditUserManagement
+    component: AdminFormEditUserManagement,
+    isAdmin: true
   },
   {
     name: 'Admin Inrastructure Category',
     url: '/admin/infrastructure-category',
-    component: AdminInfrastructureCategory
+    component: AdminInfrastructureCategory,
+    isAdmin: true
   },
   {
     name: 'Admin Inrastructure Category',
     url: '/admin/infrastructure-category/add',
-    component: AdminFormAddInfrastructureCategory
+    component: AdminFormAddInfrastructureCategory,
+    isAdmin: true
   },
   {
     name: 'Admin Inrastructure Category',
     url: '/admin/infrastructure-category/edit',
-    component: AdminFormEditInfrastructureCategory
+    component: AdminFormEditInfrastructureCategory,
+    isAdmin: true
+  },
+  {
+    name: 'Admin Master SHP',
+    url: '/admin/master-shp',
+    component: AdminMasterSHP,
+    isAdmin: true
   },
 ]

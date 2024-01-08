@@ -1,11 +1,8 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, Input, Select, Text,} from "@chakra-ui/react";
-import SideDrawer from "../../../../../components/Sidebar/AdminSideBar";
-
 const AdminFormEditInfrastructureCategory = () => {
 
   return (
     <Flex alignItems="flex-start" w={`100vw`} >
-        <SideDrawer/>
         <Box w={`100%`} background={`#F1F5F7`} h={`100vh`}>
           <Flex flexDirection={`column`}>
             <Breadcrumb p={`20px`}>
