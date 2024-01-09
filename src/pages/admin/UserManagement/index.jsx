@@ -1,7 +1,7 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, IconButton, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spacer,  Text, useDisclosure,} from "@chakra-ui/react";
 import SideDrawer from "../../../components/Sidebar/AdminSideBar";
 import { MdAdd } from "react-icons/md";
-import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ChevronDownIcon, DeleteIcon, EditIcon, PhoneIcon } from "@chakra-ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ChevronDownIcon, DeleteIcon, EditIcon, SearchIcon } from "@chakra-ui/icons";
 import { createColumnHelper } from "@tanstack/react-table";
 import { DataTable } from "../../../components/Table";
 import { useNavigate } from "react-router-dom";
@@ -157,7 +157,7 @@ const AdminUserManagement = () => {
                     <Flex alignItems={`center`} w={`100%`} gap={4}>
                       <InputGroup w={`18.75rem`}>
                         <InputLeftElement pointerEvents='none'>
-                          <PhoneIcon color='gray.300' />
+                          <SearchIcon color='gray.300' />
                         </InputLeftElement>
                         <Input type='text' placeholder='Cari User' />
                       </InputGroup>
