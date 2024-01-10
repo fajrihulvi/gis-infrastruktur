@@ -109,7 +109,7 @@ const AdminMasterSHP = () => {
 
               <BreadcrumbItem isCurrentPage>
                 <BreadcrumbLink href="#" color={`#138CEC`}>
-                  User Management
+                  Master Shape
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </Breadcrumb>
@@ -117,7 +117,7 @@ const AdminMasterSHP = () => {
               <Flex flexDirection={`column`}>
                 <Box p={`20px`} borderBottom={`1px`} borderColor={`#D8D8D8`}>
                   <Flex alignItems={`center`} gap={'1rem'}>
-                    <Text fontSize="2xl">Daftar File Infrastruktur</Text>
+                    <Text fontWeight={'semibold'} fontSize="2xl">Daftar File Infrastruktur</Text>
                     <Spacer />
                     <Button
                       leftIcon={<FiPrinter />}
