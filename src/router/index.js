@@ -8,6 +8,7 @@ import AdminInfrastructureCategory from '../pages/Admin/InfrastructureCategory';
 import AdminFormAddInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/add';
 import AdminFormEditInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/edit';
 import AdminMasterSHP from '../pages/admin/MasterSHP/index';
+import AdminFormMasterSHP from '../pages/admin/MasterSHP/FormAddSHP';
 
 
 export const routes = [
@@ -67,6 +68,12 @@ export const routes = [
     name: 'Admin Master SHP',
     url: '/admin/master-shp',
     component: AdminMasterSHP,
+    isAdmin: true
+  },
+  {
+    name: 'Admin Add Master SHP',
+    url: '/admin/master-shp/add',
+    component: AdminFormMasterSHP,
     isAdmin: true
   },
 ]
