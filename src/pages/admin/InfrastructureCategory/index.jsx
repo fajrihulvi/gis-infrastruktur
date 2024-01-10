@@ -1,6 +1,6 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, IconButton, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spacer,  Text, useDisclosure,} from "@chakra-ui/react";
 import { MdAdd } from "react-icons/md";
-import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ChevronDownIcon, DeleteIcon, EditIcon, PhoneIcon } from "@chakra-ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ChevronDownIcon, DeleteIcon, EditIcon, SearchIcon } from "@chakra-ui/icons";
 import { createColumnHelper } from "@tanstack/react-table";
 import { DataTable } from "../../../components/Table";
 import { useNavigate } from "react-router-dom";
@@ -54,7 +54,7 @@ const AdminInfrastructureCategory = () => {
                   bg: '#F5FBFF' ,
                   color: `#0C5A98`,
                 }}
-                width={`100%`}
+                width={`25%`}
                 _focus={{
                   boxShadow:
                     '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
@@ -86,7 +86,7 @@ const AdminInfrastructureCategory = () => {
                   bg: '#F5FBFF' ,
                   color: `#0C5A98`,
                 }}
-                width={`100%`}
+                width={`25%`}
                 _focus={{
                   boxShadow:
                     '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
@@ -137,7 +137,7 @@ const AdminInfrastructureCategory = () => {
                     <Flex alignItems={`center`} w={`100%`} gap={4}>
                       <InputGroup w={`18.75rem`}>
                         <InputLeftElement pointerEvents='none'>
-                          <PhoneIcon color='gray.300' />
+                          <SearchIcon color='gray.300' />
                         </InputLeftElement>
                         <Input type='text' placeholder='Cari Kategori' />
                       </InputGroup>
