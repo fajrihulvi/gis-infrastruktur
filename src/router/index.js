@@ -7,9 +7,21 @@ import AdminFormEditUserManagement from '../pages/Admin/UserManagement/Form/edit
 import AdminInfrastructureCategory from '../pages/Admin/InfrastructureCategory';
 import AdminFormAddInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/add';
 import AdminFormEditInfrastructureCategory from '../pages/Admin/InfrastructureCategory/Form/edit';
+import UserAuthLogin from '../pages/User/Auth/login';
+import UserAuthRegister from '../pages/User/Auth/register';
 
 
 export const routes = [
+  {
+    name: 'User Login',
+    url: '/user/login',
+    component: UserAuthLogin
+  },
+  {
+    name: 'User Register',
+    url: '/user/register',
+    component: UserAuthRegister
+  },
   {
     name: 'Home',
     url: '/',
