@@ -3,7 +3,7 @@ variables:
   CONTAINER_NAME: "gis-fe-app"
   NETWORK: "my-network"
   ACCESS_IP: 127.0.0.1
-  ACCESS_PORT: 3000
+  ACCESS_PORT: 3333
   TAG_DEV: ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}:latest
   TAG_STG: ${CI_REGISTRY_IMAGE}/stag:latest
   TAG_PRD: ${CI_REGISTRY_IMAGE}/prod:latest
@@ -11,7 +11,7 @@ variables:
 cache:
   key: ${CI_COMMIT_REF_NAME}
   paths:
-    - ./node_modules/
+    - node_modules/
 
 ### DEVELOPMENT JOB(s)
 build-dev:
