@@ -11,7 +11,7 @@ variables:
 cache:
   key: ${CI_COMMIT_REF_NAME}
   paths:
-    - ./node_modules
+    - ./node_modules/
 
 ### DEVELOPMENT JOB(s)
 build-dev:
