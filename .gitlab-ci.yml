@@ -1,0 +1,46 @@
+variables:
+  DOCKER_DRIVER: overlay2
+  CONTAINER_NAME: "gis-fe-app"
+  NETWORK: "my-network"
+  ACCESS_IP: 127.0.0.1
+  ACCESS_PORT: 3000
+  TAG_DEV: ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}:latest
+  TAG_STG: ${CI_REGISTRY_IMAGE}/stag:latest
+  TAG_PRD: ${CI_REGISTRY_IMAGE}/prod:latest
+
+cache:
+  key: ${CI_COMMIT_REF_NAME}
+  paths:
+    - ./node_modules
+
+### DEVELOPMENT JOB(s)
+build-dev:
+  stage: build
+  script:
+    - echo ${CI_REGISTRY_PASSWORD} | docker login -u ${CI_REGISTRY_USER} --password-stdin ${CI_REGISTRY}
+    - cp .env-dev .env
+    - docker build -t "${TAG_DEV}" -f Dockerfile .
+    - docker push ${TAG_DEV}
+  artifacts:
+    paths:
+      - node_modules/
+  only:
+    - develop
+  tags:
+    - "gis-fe-dev"
+
+deploy-dev:
+  stage: deploy
+  script:
+    - echo ${CI_REGISTRY_PASSWORD} | docker login -u ${CI_REGISTRY_USER} --password-stdin ${CI_REGISTRY}
+    - docker pull ${TAG_DEV}
+    - docker stop ${CONTAINER_NAME} || true && docker rm -f ${CONTAINER_NAME} || true
+    - >
+      docker run --restart unless-stopped --network ${NETWORK} -p "${ACCESS_IP}:${ACCESS_PORT}":80 -d
+      --name ${CONTAINER_NAME} ${TAG_DEV}
+  environment:
+    name: development
+  only:
+    - develop
+  tags:
+    - "gis-fe-dev"
