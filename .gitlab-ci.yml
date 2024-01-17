@@ -36,7 +36,7 @@ deploy-dev:
     - docker pull ${TAG_DEV}
     - docker stop ${CONTAINER_NAME} || true && docker rm -f ${CONTAINER_NAME} || true
     - >
-      docker run --restart unless-stopped --network ${NETWORK} -p "${ACCESS_IP}:${ACCESS_PORT}":80 -d
+      docker run --restart unless-stopped --network ${NETWORK} -p "${ACCESS_IP}:${ACCESS_PORT}":5173 -d
       --name ${CONTAINER_NAME} ${TAG_DEV}
   environment:
     name: development

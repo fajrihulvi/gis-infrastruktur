@@ -17,17 +17,15 @@ RUN yarn install --network-timeout 900000 && \
 # Copy the React App to the container
 COPY . .
 
-EXPOSE 5173
-CMD ["yarn", "dev"]
-## We want the production version
-#RUN yarn build
-#
-## Prepare nginx
-#FROM nginx:stable-alpine
-#COPY --from=build /app/build /usr/share/nginx/html
-#RUN rm /etc/nginx/conf.d/default.conf
-#COPY nginx.conf /etc/nginx/conf.d
-#
-## Fire up nginx
-#EXPOSE 80
-#CMD ["nginx", "-g", "daemon off;"]
+# We want the production version
+RUN yarn build
+
+# Prepare nginx
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+
+# Fire up nginx
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
