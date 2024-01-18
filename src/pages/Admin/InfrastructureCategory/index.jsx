@@ -4,7 +4,7 @@ import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ChevronDownIcon, DeleteIco
 import { createColumnHelper } from "@tanstack/react-table";
 import { DataTable } from "../../../components/Table";
 import { useNavigate } from "react-router-dom";
-import SideDrawer from "../../../components/Sidebar/AdminSideBar";
+import SideDrawer from "../../../components/Sidebar/AdminSidebar";
 
 
 const columnHelper = createColumnHelper();

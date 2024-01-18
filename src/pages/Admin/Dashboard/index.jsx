@@ -1,7 +1,7 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Text } from "@chakra-ui/react";
 import AdminDashboardCard from "../../../components/Card/AdminDashboardCard";
 import AdminDashboardCardHeader from "../../../components/Card/AdminDashboardCardHeader";
-import SideDrawer from "../../../components/Sidebar/AdminSideBar";
+import SideDrawer from "../../../components/Sidebar/AdminSidebar";
 
 const AdminDashboard = () => {
 
