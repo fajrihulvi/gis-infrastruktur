@@ -1,5 +1,5 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, Input, Select, Text,} from "@chakra-ui/react";
-import SideDrawer from "../../../../../components/Sidebar/AdminSideBar";
+import SideDrawer from "../../../../../components/Sidebar/AdminSidebar";
 
 const AdminFormAddInfrastructureCategory = () => {
 
