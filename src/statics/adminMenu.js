@@ -1,6 +1,6 @@
 import React from "react";
-import { FiFileText, FiHome, FiUsers } from "react-icons/fi";
-import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { FiFileText, FiHome, FiMail, FiUsers } from "react-icons/fi";
+import { HiOutlineBuildingOffice2, HiOutlineFolderOpen } from "react-icons/hi2";
 
 const adminMenu = [
   {
@@ -22,6 +22,36 @@ const adminMenu = [
     url: '/admin/log-activity',
     label: 'Log Activity',
     icon: React.createElement(FiFileText, {size: '24px'})
+  },
+  {
+    url: '/admin/public-suggestion',
+    label: 'Usulan Masyarakat',
+    icon: React.createElement(FiMail, {size: '24px'}),
+    group: 'master'
+  },
+  {
+    url: '/admin/master-shp',
+    label: 'Master Shape (SHP)',
+    icon: React.createElement(HiOutlineFolderOpen, {size: '24px'}),
+    group: 'master',
+    submenus: [
+      {
+        url: '/admin/master-shp?tab=regional',
+        label: 'Regional',
+      },
+      {
+        url: '/admin/master-shp?tab=existing',
+        label: 'Existing',
+      },
+      {
+        url: '/admin/master-shp?tab=planning',
+        label: 'Perencanaan',
+      },
+      {
+        url: '/admin/master-shp?tab=indicator-macro',
+        label: 'Indikator Makro',
+      },
+    ]
   },
 ]
 

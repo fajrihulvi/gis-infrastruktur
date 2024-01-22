@@ -1,5 +1,4 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Text } from "@chakra-ui/react";
-import SideDrawer from "../../../components/Sidebar/AdminSideBar";
 import AdminDashboardCard from "../../../components/Card/AdminDashboardCard";
 import AdminDashboardCardHeader from "../../../components/Card/AdminDashboardCardHeader";
 
@@ -8,7 +7,6 @@ const AdminDashboard = () => {
   return (
     <div>
       <Flex alignItems="flex-start" w={`100vw`} >
-          <SideDrawer/>
           <Box w={`100%`} background={`#F1F5F7`} h={`100vh`}>
             <Flex flexDirection={`column`} m={`20px`} gap={4}>
               <Breadcrumb p={`20px`}>
