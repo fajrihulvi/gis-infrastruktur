@@ -1,13 +1,14 @@
 import axios from "axios";
 
 const headers = {
-  "Content-Type": "application/json"
+  "Content-Type": "application/x-www-form-urlencoded"
 };
 
 export const login = (params) => {
     return axios.post(
         "http://103.179.69.31/login",
         params,
+        { headers }
     );
 }
 
