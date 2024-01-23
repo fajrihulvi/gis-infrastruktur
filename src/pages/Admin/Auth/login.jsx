@@ -1,10 +1,11 @@
 import { Box, Button, Flex, Image, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
 import adminLoginBanner from "../../../assets/admin-login-banner.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMutation, useQuery } from "react-query";
-import { getCategoryList, login } from "../../../services/auth";
+import { useMutation } from "react-query";
+import { login } from "../../../services/auth";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { saveAuth } from "../../../app/store/auth";
 
 const AuthLogin = () => {
   const navigate = useNavigate();
@@ -13,16 +14,7 @@ const AuthLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { data } = useQuery({
-    queryKey: ["category-list", {}],
-    queryFn: async () => {
-      const res = await getCategoryList(`kecamatan_id=1&kelurahan_id=1`);
-      return res?.data?.data || [];
-    },
-    retry: 1,
-  });
-
-  const mutation = useMutation({
+  const { mutate } = useMutation({
     mutationFn: async (someProps) => {
       try {
         const response = await login(someProps);
@@ -31,14 +23,15 @@ const AuthLogin = () => {
         console.error("Error:", error);
         throw error;
       }
+    },onSuccess(res) {
+      saveAuth(res?.data);
+      navigate('/admin/dashboard')
+    },onError(err){
+      console.log(err);
     }
   });
 
   const handleClick = () => setShow(!show)
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <>
@@ -86,7 +79,7 @@ const AuthLogin = () => {
               </Box>
               <Box>
                 <Button w={`100%`} p={2} colorScheme='blue' onClick={() => {
-                  mutation.mutate(
+                  mutate(
                     {
                       email,
                       password

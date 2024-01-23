@@ -5,6 +5,9 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { DataTable } from "../../../components/Table";
 import { useNavigate } from "react-router-dom";
 import SideDrawer from "../../../components/Sidebar/AdminSidebar";
+import { getList } from "../../../services/userManagement";
+import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 
 
 const columnHelper = createColumnHelper();
@@ -43,6 +46,16 @@ const columns = [
 const AdminUserManagement = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [paramsTable, setParamsTable] = useState({});
+
+  const a = useQuery({
+    queryKey: ["user-management-list", paramsTable],
+    queryFn: async () => {
+      const res = await getList();
+      return res?.data?.data || [];
+    },
+    retry: 1,
+  });
 
   const data = [
     {
@@ -124,6 +137,10 @@ const AdminUserManagement = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+      console.log(a);
+  }, [a])
 
   return (
     <>

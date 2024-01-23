@@ -1,21 +1,26 @@
-import axios from "axios";
+import config from "../app/config";
+import axiosInstance from "../app/axiosInstance";
 
 const headers = {
   "Content-Type": "application/x-www-form-urlencoded"
 };
 
 export const login = (params) => {
-    return axios.post(
-        "http://103.179.69.31/login",
+  try {
+    return axiosInstance.post(
+        `${config.BASE_URL}/login`,
         params,
         { headers }
     );
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export const getCategoryList = (params) => {
   try {
-    return axios.get(
-      "http://103.179.69.31/shp/get-maps?kecamatan_id=1&kelurahan_id=1",
+    return axiosInstance.get(
+      `${config.BASE_URL}/shp/get-maps?${params}`,
     );
   } catch (err) {
     console.log(err);
