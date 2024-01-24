@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { config } from 'dotenv';
-import { getToken } from './store/auth';
+import { getToken, removeAuth } from './store/auth';
 
 const axiosInstance = axios.create({
   baseURL: config.BASE_URL, // Replace with your API base URL
@@ -33,6 +33,9 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (error?.response?.data?.code == 'ERR_JWT_EXPIRED') {
+      removeAuth()
+    }
     // Handle response errors here
 
     return Promise.reject(error);

@@ -57,7 +57,7 @@ export const routes = [
   {
     isProtected: true,
     name: 'Admin Form Edit User Management',
-    url: '/admin/user-management/edit',
+    url: '/admin/user-management/edit/:id',
     component: AdminFormEditUserManagement
   },
   {
