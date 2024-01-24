@@ -2,10 +2,34 @@ import { Box, Button, Flex, Image, Input, InputGroup, InputRightElement, Text } 
 import adminLoginBanner from "../../../assets/admin-login-banner.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { login } from "../../../services/auth";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { saveAuth } from "../../../app/store/auth";
 
 const AuthLogin = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false)
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const { mutate } = useMutation({
+    mutationFn: async (someProps) => {
+      try {
+        const response = await login(someProps);
+        return response;
+      } catch (error) {
+        console.error("Error:", error);
+        throw error;
+      }
+    },onSuccess(res) {
+      saveAuth(res?.data);
+      navigate('/admin/dashboard')
+    },onError(err){
+      console.log(err);
+    }
+  });
 
   const handleClick = () => setShow(!show)
 
@@ -29,8 +53,7 @@ const AuthLogin = () => {
                 <Flex flexDirection={`column`} gap={`0.5rem`}>
                   <Text fontSize={`0.875rem`} fontWeight={500} >User ID</Text>
                   <Input
-                    value={''}
-                    onChange={''}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder='ID/Email'
                     size='md'
                   />
@@ -42,12 +65,13 @@ const AuthLogin = () => {
                   <InputGroup size='md'>
                     <Input
                       pr='4.5rem'
+                      onChange={(e) => setPassword(e.target.value)}
                       type={show ? 'text' : 'password'}
                       placeholder='Masukkan kata sandi'
                     />
                     <InputRightElement width='4.5rem'>
                       <Button h='1.75rem' size='sm' onClick={handleClick}>
-                        {show ? 'Hide' : 'Show'}
+                        {show ? <ViewOffIcon/> : <ViewIcon/>}
                       </Button>
                     </InputRightElement>
                   </InputGroup>
@@ -55,7 +79,13 @@ const AuthLogin = () => {
               </Box>
               <Box>
                 <Button w={`100%`} p={2} colorScheme='blue' onClick={() => {
-                  navigate('/admin/dashboard');
+                  mutate(
+                    {
+                      email,
+                      password
+                    }
+                  );
+                  // navigate('/admin/dashboard');
                 }}>Masuk</Button>
               </Box>
             </Flex>
