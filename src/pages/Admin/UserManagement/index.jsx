@@ -82,11 +82,11 @@ const AdminUserManagement = () => {
           res?.data?.data?.data.map((value, index) => {
             data.push(
               {
-                name: value.name,
-                email: value.email,
-                phone: value.phone,
-                departement: value.dinas.name,
-                role: value.role.name,
+                name: value?.name,
+                email: value?.email,
+                phone: value?.phone,
+                departement: value?.dinas?.name,
+                role: value?.role?.name,
                 action: (
                   <>
                     <Flex gap={2}>
@@ -158,15 +158,15 @@ const AdminUserManagement = () => {
                           onClick={()=>{
                             setSelectedAdmin(
                               {
-                                id: value.id,
-                                email: value.email,
-                                password: value.password,
-                                name: value.name,
-                                phone: value.phone,
-                                dinas_id: value.dinas.id,
-                                dinas: value.dinas.name,
-                                role: value.role.name,
-                                nip: value.nip,
+                                id: value?.id,
+                                email: value?.email,
+                                password: value?.password,
+                                name: value?.name,
+                                phone: value?.phone,
+                                dinas_id: value?.dinas?.id,
+                                dinas: value?.dinas?.name,
+                                role: value?.role?.name,
+                                nip: value?.nip,
                                 updated_by: auth.id,
                               }
                             )
