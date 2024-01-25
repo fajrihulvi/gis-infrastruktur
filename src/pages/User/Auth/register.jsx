@@ -1,9 +1,11 @@
-import { Box, Button, Flex, Image, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
-import adminLoginBanner from "../../../assets/admin-login-banner.png";
+import { Box, Button, Center, Flex, Image, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
+import userAuthBanner from "../../../assets/background-auth-user.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import Logo from "../../../assets/logo-alt.svg";
 
-const AuthLogin = () => {
+const UserAuthRegister = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false)
 
@@ -11,23 +13,35 @@ const AuthLogin = () => {
 
   return (
     <>
-      <Flex w={`100vw`} h={`100vh`} bgGradient={`linear(180deg, #E0F2F4 0%, #FCFEFE 100%)`}>
-        <Box w={`100%`} color='white' >
-          <Image fit={`cover`} src={adminLoginBanner} alt='admin login banner' w={`100%`} h={`100%`}/>
-        </Box>
-        <Box w={`100%`} px={20} my={`auto`} >
+      <Flex w={`100vw`} alignItems={`center`} justifyContent={`center`} h={`100vh`} bgImage={userAuthBanner}>
+        <Box w={`552px`}>
           <Box 
           bg={`white`}
-          rounded={`5%`}
+          rounded={`2%`}
           boxShadow={`0px 4px 24px 0px rgba(0, 0, 0, 0.08)`}
           p={50}>
             <Flex flexDirection={`column`} gap={`2rem`}>
               <Box>
-                <Text fontSize={`1.25rem`} fontWeight={500} textAlign={`center`}>Silahkan login atau masuk terlebih dahulu</Text>
+                <Center padding={`1.5rem`} borderBottom={`1px`} borderColor={`#E3E9F6`} marginBottom={`2rem`}>
+                  <Image align={"center"} src={Logo} />
+                </Center>
+                <Text fontSize={`1.25rem`} fontWeight={500} textAlign={`center`}>Bersama kembangkan Pangkal Pinang</Text>
+                <Text fontSize={`0.95rem`} fontWeight={500} textAlign={`center`}>Sudah punya akun? Masuk</Text>
               </Box>
               <Box>
                 <Flex flexDirection={`column`} gap={`0.5rem`}>
-                  <Text fontSize={`0.875rem`} fontWeight={500} >User ID</Text>
+                  <Text fontSize={`0.875rem`} fontWeight={500} >Nama</Text>
+                  <Input
+                    value={''}
+                    onChange={''}
+                    placeholder='Nama'
+                    size='md'
+                  />
+                </Flex>
+              </Box>
+              <Box>
+                <Flex flexDirection={`column`} gap={`0.5rem`}>
+                  <Text fontSize={`0.875rem`} fontWeight={500} >Email</Text>
                   <Input
                     value={''}
                     onChange={''}
@@ -46,8 +60,8 @@ const AuthLogin = () => {
                       placeholder='Masukkan kata sandi'
                     />
                     <InputRightElement width='4.5rem'>
-                      <Button h='1.75rem' size='sm' onClick={handleClick}>
-                        {show ? 'Hide' : 'Show'}
+                      <Button h='1.75rem' size='sm' bg={`transparent`} onClick={() => {handleClick}}>
+                        {show ? <ViewOffIcon/> : <ViewIcon/>}
                       </Button>
                     </InputRightElement>
                   </InputGroup>
@@ -66,4 +80,4 @@ const AuthLogin = () => {
   );
 };
 
-export default AuthLogin;
+export default UserAuthRegister;

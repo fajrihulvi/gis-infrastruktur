@@ -4,11 +4,17 @@ import {
   Routes as Switch,
 } from "react-router-dom";
 
+import _ from "lodash";
+
 import { ChakraProvider } from "@chakra-ui/react";
 import AdminLayout from './Layouts/AdminLayout';
 
 // Routes
 import {routes} from './router/index';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { AuthGuard } from "./app/authGuard";
+
+const queryClient = new QueryClient()
 
 const adminContent = (elemet) => {
   return (
@@ -20,21 +26,42 @@ const adminContent = (elemet) => {
 
 export default function App() {
   return (
-    <ChakraProvider>
-      <Router>
-        <Switch>
-          {
-            routes.map(({url, component: Component, isAdmin}, i) => (
-              <Route 
-                key={i} 
-                path={url} 
-                element={
-                  isAdmin ? adminContent(<Component />) : <Component />
-                } />
-            ))
-          }
-        </Switch>
-      </Router>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <Router>
+          <Switch>
+            
+            {/* Public Routes */}
+            <Route element={<AuthGuard isPrivate={false} />}>
+              {_.map(_.filter(routes, { isProtected:false }), ({url, component: Component}, key) => {
+                return (
+                  <Route
+                    exact={true}
+                    key={key}
+                    path={url}
+                    element={<Component />}
+                  />
+                );
+              })}
+            </Route>
+            
+            {/* Private Route - Require Authentication */}
+            <Route element={<AuthGuard isPrivate />}>
+              {_.map(_.filter(routes,{ isProtected:true }), ({url, component: Component}, key) => {
+                return (
+                  <Route
+                    exact={true}
+                    key={key}
+                    path={url}
+                    element={<Component />}
+                  />
+                );
+              })}
+            </Route>
+            
+          </Switch>  
+        </Router>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
