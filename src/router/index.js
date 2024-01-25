@@ -75,7 +75,7 @@ export const routes = [
   {
     isProtected: true,
     name: 'Admin Inrastructure Category',
-    url: '/admin/infrastructure-category/edit',
+    url: '/admin/infrastructure-category/edit/:id',
     component: AdminFormEditInfrastructureCategory
   },
 ]

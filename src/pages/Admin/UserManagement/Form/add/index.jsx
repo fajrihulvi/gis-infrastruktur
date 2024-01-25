@@ -20,7 +20,7 @@ const AdminFormAddUserManagement = () => {
     },
   });
 
-  const {data: masterDataDinas, isLoading} = useQuery({
+  const {data: masterDataDinas} = useQuery({
     queryKey: ["master-data-dinas-list", {}],
     queryFn: async () => {
       const res = await getListDinas();
@@ -187,7 +187,7 @@ const AdminFormAddUserManagement = () => {
                                       name={'dinas'}
                                       control={methods.control}
                                       defaultValue=''
-                                      render={({ field: { onChange, value }, fieldState: {invalid, error} }) => (
+                                      render={({ field: { onChange, value }, fieldState: {invalid} }) => (
                                         <Select placeholder='Pilih Dinas' size={`sm`} value={value} onChange={onChange} isError={invalid}>
                                             {listDinas && listDinas.map((data, index) => {
                                               return (<option key={index} value={data.id}>{data.name}</option>)
