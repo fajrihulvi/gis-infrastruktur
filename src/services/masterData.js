@@ -1,6 +1,8 @@
 import config from "../app/config";
 import axiosInstance from "../app/axiosInstance";
 
+// Departement
+
 export const getListDinas = (params) => {
   try {
     return axiosInstance.get(
@@ -12,6 +14,8 @@ export const getListDinas = (params) => {
   }
 };
 
+// Roles
+
 export const getListRoles = (params) => {
   try {
     return axiosInstance.get(
@@ -22,3 +26,5 @@ export const getListRoles = (params) => {
     console.log(err);
   }
 };
+
+// Category Infrastructure

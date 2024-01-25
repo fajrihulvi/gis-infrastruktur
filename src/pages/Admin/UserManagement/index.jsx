@@ -1,4 +1,4 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, IconButton, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuItemOption, MenuList, MenuOptionGroup, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spacer,  Text, useDisclosure,} from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex, Grid, GridItem, IconButton, Input, InputGroup, InputLeftElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spacer,  Text, useDisclosure,} from "@chakra-ui/react";
 import { MdAdd } from "react-icons/md";
 import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, DeleteIcon, EditIcon, SearchIcon } from "@chakra-ui/icons";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -79,7 +79,7 @@ const AdminUserManagement = () => {
       if (res) {
         setParamsTable({...paramsTable, page : res?.data?.data?.meta?.current_page})
         if (res?.data?.data?.data.length > 0) {
-          res?.data?.data?.data.map((value, index) => {
+          res?.data?.data?.data.map((value) => {
             data.push(
               {
                 name: value?.name,
@@ -203,6 +203,7 @@ const AdminUserManagement = () => {
         throw error;
       }
     },onSuccess(res) {
+      console.log(res)
       onClose()
       setParamsTable({})
       navigate('/admin/user-management')
